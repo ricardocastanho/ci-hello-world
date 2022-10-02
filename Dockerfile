@@ -2,7 +2,8 @@
 FROM node:16-alpine as build-stage
 WORKDIR /app
 COPY package*.json pnpm-lock.yaml ./
-RUN npm install
+RUN npm install -g pnpm
+RUN pnpm install
 COPY . .
 RUN pnpm build
 
