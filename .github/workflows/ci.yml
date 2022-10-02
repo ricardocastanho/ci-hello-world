@@ -7,8 +7,8 @@ on:
     branches: [ "develop" ]
   workflow_dispatch:
 
-env: 
-  CYPRESS_CACHE_FOLDER: cypress/cache
+# env: 
+#   CYPRESS_CACHE_FOLDER: cypress/cache
 
 jobs:
   test:
@@ -43,12 +43,12 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
 
-      - name: Cache Cypress Binary
-        uses: actions/cache@v3
-        id: cache-cypress-binary
-        with:
-          path: cypress/cache
-          key: cypress-binary-${{ hashFiles('pnpm-lock.yaml') }}
+      # - name: Cache Cypress Binary
+      #   uses: actions/cache@v3
+      #   id: cache-cypress-binary
+      #   with:
+      #     path: cypress/cache
+      #     key: cypress-binary-${{ hashFiles('pnpm-lock.yaml') }}
 
       - name: Install dependencies
         run: pnpm install
@@ -65,5 +65,5 @@ jobs:
       - name: Unit testing
         run: pnpm test:unit
     
-      - name: End-to-end testing
-        run: pnpm test:e2e:ci
+      # - name: End-to-end testing
+      #   run: pnpm test:e2e:ci
