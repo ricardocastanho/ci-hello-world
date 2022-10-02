@@ -43,6 +43,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install
     
+      - name: Build code
+        run: pnpm build
+    
       - name: Code formatting
         run: pnpm lint
     
