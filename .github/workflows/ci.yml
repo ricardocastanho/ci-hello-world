@@ -45,6 +45,7 @@ jobs:
 
       - name: Cache Cypress Binary
         uses: actions/cache@v3
+        id: cache-cypress-binary
         with:
           path: cypress/cache
           key: cypress-binary-${{ hashFiles('pnpm-lock.yaml') }}
