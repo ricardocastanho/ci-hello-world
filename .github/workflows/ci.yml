@@ -23,6 +23,9 @@ jobs:
           cache: 'pnpm'
           cache-dependency-path: 'pnpm-lock.yaml'
     
+      - name: Installing dependencies
+        run: pnpm install
+    
       - name: Code formatting
         run: pnpm lint
     
