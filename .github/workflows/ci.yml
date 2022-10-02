@@ -5,8 +5,10 @@ on:
     branches: [ "develop" ]
   pull_request:
     branches: [ "develop" ]
-
   workflow_dispatch:
+
+env: 
+  CYPRESS_CACHE_FOLDER: cypress/cache
 
 jobs:
   test:
@@ -40,6 +42,12 @@ jobs:
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
+
+      - name: Cache Cypress Binary
+        uses: actions/cache@v3
+        with:
+          path: cypress/cache
+          key: cypress-binary-${{ hashFiles('pnpm-lock.yaml') }}
 
       - name: Install dependencies
         run: pnpm install
