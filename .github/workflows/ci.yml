@@ -54,14 +54,14 @@ jobs:
       - name: Build code
         run: pnpm build
     
-      - name: Code formatting
+      - name: Code format
         run: pnpm lint
     
-      - name: Type checking
+      - name: Type check
         run: pnpm type-check
     
-      - name: Unit testing
+      - name: Unit test
         run: pnpm test:unit
     
-      - name: End-to-end testing
+      - name: End-to-end test
         run: pnpm test:e2e:ci
