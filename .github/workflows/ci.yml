@@ -39,14 +39,14 @@ jobs:
         id: pnpm-cache
         with:
           path: ${{ steps.pnpm-cache-dir.outputs.pnpm_cache_dir }}
-          key: pnpm-cache-${{ hashFiles('pnpm-lock.yaml') }}
+          key: pnpm-${{ hashFiles('pnpm-lock.yaml') }}
       
-      - name: Cache cypress binaries
+      - name: Cache ~/.cache
         uses: actions/cache@v3
-        id: cypress-cache
+        id: cache-folder
         with:
-          path: $CYPRESS_CACHE_FOLDER
-          key: pnpm-cypress-${{ hashFiles('pnpm-lock.yaml') }}
+          path: ~/.cache
+          key: pnpm-${{ hashFiles('pnpm-lock.yaml') }}
 
       - name: Install dependencies
         run: CYPRESS_CACHE_FOLDER=$CYPRESS_CACHE_FOLDER pnpm install --frozen-lockfile
