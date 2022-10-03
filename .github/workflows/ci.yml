@@ -52,5 +52,5 @@ jobs:
       - name: Unit testing
         run: pnpm test:unit
     
-      # - name: End-to-end testing
-      #   run: pnpm test:e2e:ci
+      - name: End-to-end testing
+        run: pnpm test:e2e:ci
