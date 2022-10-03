@@ -2,7 +2,8 @@ name: CD
 
 on:
   push:
-    branches: [ "master" ]
+    tags: 
+      - '*'
 
   workflow_dispatch:
 
@@ -30,4 +31,4 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/vueapp:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/vueapp:${{ env.PACKAGE_VERSION }}
