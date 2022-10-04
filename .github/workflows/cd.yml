@@ -5,8 +5,6 @@ on:
     tags: 
       - '*'
 
-  workflow_dispatch:
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -14,6 +12,17 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
+      - name: Checkout
+        id: package
+        run: |
+          echo "::set-output name=version::$( \
+            cat package.json \
+              | grep version \
+              | head -1 \
+              | awk -F: '{ print $2 }' \
+              | sed 's/[",]//g' \
+            )"
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
@@ -31,4 +40,5 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/vueapp:${{ env.PACKAGE_VERSION }}
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/vueapp:${{steps.package.outputs.version}}
