@@ -1,9 +1,8 @@
 name: Deployment
 
 on:
-  push:
-    tags: 
-      - '*'
+  release:
+    types: [published]
 
 jobs:
   deploy:
@@ -34,5 +33,5 @@ jobs:
         with:
           push: true
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/vue:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/vue:latest,
             ${{ secrets.DOCKERHUB_USERNAME }}/vue:${{steps.version.outputs.version}}
