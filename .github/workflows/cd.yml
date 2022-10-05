@@ -34,4 +34,4 @@ jobs:
         with:
           push: true
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/vue:${{steps.package.outputs.version}}
+            ${{ secrets.DOCKERHUB_USERNAME }}/vueapp:${{steps.package.outputs.version}}
